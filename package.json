@@ -2,12 +2,14 @@
   "name": "reactWeather",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://majecek.github.io/reactWeather",
   "devDependencies": {
     "react-scripts": "0.8.4"
   },
   "dependencies": {
     "axios": "0.15.3",
     "bootstrap": "4.0.0-alpha.5",
+    "gh-pages": "0.12.0",
     "lodash": "^4.17.4",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
@@ -21,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   }
 }
