@@ -10,8 +10,8 @@ import './index.css';
 const createStroreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
-  <Provider store={createStroreWithMiddleware(reducers)} >
-  <App />
+  <Provider store={createStroreWithMiddleware(reducers)}>
+    <App />
   </Provider>,
   document.getElementById('root')
 );

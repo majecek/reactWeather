@@ -7,19 +7,27 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 class WeatherList extends Component {
 
+  renderDate() {
+    return new Date();
+  }
+
   renderWeather(cityData) {
+    // if (!cityData) {
+    //   return <tr><td>Loading...</td></tr>;
+    // }
+    // console.log("cityData: ", cityData);
     const name = cityData.city.name;
-    const temps = _.map(cityData.list.map( weather => weather.main.temp), temp => temp - 273.15);
-    const pressures = cityData.list.map( weather => weather.main.pressure);
-    const humidities = cityData.list.map( weather => weather.main.humidity);
-    const { lon, lat } = cityData.city.coord;
+    const temps = _.map(cityData.list.map(weather => weather.main.temp), temp => temp - 273.15);
+    const pressures = cityData.list.map(weather => weather.main.pressure);
+    const humidities = cityData.list.map(weather => weather.main.humidity);
+    const {lon, lat} = cityData.city.coord;
 
     return (
       <tr key={name}>
-        <td><GoogleMap lon={lon} lat={lat} /> </td>
-        <td height={120} width={300}><Chart data={temps} color="red" units="C" /></td>
-        <td height={120} width={300}><Chart data={pressures} color="grey" units="hPa" /></td>
-        <td height={120} width={300}><Chart data={humidities} color="black" units="%" /></td>
+        <td><GoogleMap lon={lon} lat={lat}/></td>
+        <td height={120} width={300}><Chart data={temps} color="red" units="C"/></td>
+        <td height={120} width={300}><Chart data={pressures} color="grey" units="hPa"/></td>
+        <td height={120} width={300}><Chart data={humidities} color="black" units="%"/></td>
       </tr>
     );
   }
@@ -27,17 +35,18 @@ class WeatherList extends Component {
   render() {
     return (
       <div>
-        <table className="table table-hover" >
+        {/*<div>{this.renderDate()}</div>*/}
+        <table className="table table-hover">
           <thead>
-            <tr>
-              <th>City</th>
-              <th>Temperature (C)</th>
-              <th>Presure (hPa)</th>
-              <th>Humidity (%)</th>
-            </tr>
+          <tr>
+            <th>City</th>
+            <th>Temperature (C)</th>
+            <th>Presure (hPa)</th>
+            <th>Humidity (%)</th>
+          </tr>
           </thead>
           <tbody>
-            {this.props.weather.map(this.renderWeather)}
+          {this.props.weather.map(this.renderWeather)}
           </tbody>
         </table>
       </div>
@@ -45,8 +54,8 @@ class WeatherList extends Component {
   }
 }
 
-function mapStateToProps({ weather }) {
-  return { weather };
+function mapStateToProps({weather}) {
+  return {weather};
 }
 
 export  default connect(mapStateToProps)(WeatherList);
